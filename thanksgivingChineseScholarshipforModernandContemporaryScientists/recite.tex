@@ -1,0 +1,863 @@
+%-- coding: UTF-8 -- 
+\documentclass[UTF8]{ctexart}
+
+    
+% \usepackage{authblk}
+% \usepackage{indentfirst}
+% \author[]{RX. Geng}
+% \affil[]{School of Information and  Communication Engineering, University of Electronic Science and Technology of China}
+% 目录应在base.tplx中添加
+% \tableofcontents
+% \documentclass[11pt]{article}
+
+    
+    
+%     \usepackage[T1]{fontenc}
+%     % Nicer default font (+ math font) than Computer Modern for most use cases
+%     \usepackage{mathpazo}
+
+%     % Basic figure setup, for now with no caption control since it's done
+%     % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+%     \usepackage{graphicx}
+%     % We will generate all images so they have a width \maxwidth. This means
+%     % that they will get their normal width if they fit onto the page, but
+%     % are scaled down if they would overflow the margins.
+%     \makeatletter
+%     \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+%     \else\Gin@nat@width\fi}
+%     \makeatother
+%     \let\Oldincludegraphics\includegraphics
+%     % Set max figure width to be 80% of text width, for now hardcoded.
+%     \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+%     % Ensure that by default, figures have no caption (until we provide a
+%     % proper Figure object with a Caption API and a way to capture that
+%     % in the conversion process - todo).
+%     \usepackage{caption}
+%     \DeclareCaptionLabelFormat{nolabel}{}
+%     \captionsetup{labelformat=nolabel}
+
+% % ==========================自定义宏包与设定=======================================
+% %    \renewcommand\thesubsubsection{\arabic{subsubsection}}
+% %    \renewcommand\theparagraph{\Alph{paragraph}}
+% %    \renewcommand\thesubparagraph{\alph{subparagraph}}
+% %后文中已经定义    \usepackage{xcolor}%定义了一些颜色
+% %    \usepackage{colortbl,booktabs}  %第二个包定义了几个*rule
+% % ===============================================================================
+%     \usepackage{adjustbox} % Used to constrain images to a maximum size 
+%     \usepackage{xcolor} % Allow colors to be defined
+%     \usepackage{enumerate} % Needed for markdown enumerations to work
+%     \usepackage{geometry} % Used to adjust the document margins
+%     \usepackage{amsmath} % Equations
+%     \usepackage{amssymb} % Equations
+%     \usepackage{textcomp} % defines textquotesingle
+%     \usepackage{graphicx} 
+%     % Hack from http://tex.stackexchange.com/a/47451/13684:
+%     \AtBeginDocument{%
+%         \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+%     }
+%     \usepackage{upquote} % Upright quotes for verbatim code
+%     \usepackage{eurosym} % defines \euro
+%     \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+%     \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+%     \usepackage{fancyvrb} % verbatim replacement that allows latex
+%     \usepackage{grffile} % extends the file name processing of package graphics 
+%                          % to support a larger range 
+%     % The hyperref package gives us a pdf with properly built
+%     % internal navigation ('pdf bookmarks' for the table of contents,
+%     % internal cross-reference links, web links for URLs, etc.)
+%     \usepackage{hyperref}
+%     \usepackage{longtable} % longtable support required by pandoc >1.10
+%     \usepackage{booktabs}  % table support for pandoc > 1.12.2
+%     \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+%     %\usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+%                                 % normalem makes italics be italics, not underlines
+%     % Colors for the hyperref package
+%     \definecolor{urlcolor}{rgb}{0,.145,.698}
+%     \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+%     \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+%     % ANSI colors
+%     \definecolor{ansi-black}{HTML}{3E424D}
+%     \definecolor{ansi-black-intense}{HTML}{282C36}
+%     \definecolor{ansi-red}{HTML}{E75C58}
+%     \definecolor{ansi-red-intense}{HTML}{B22B31}
+%     \definecolor{ansi-green}{HTML}{00A250}
+%     \definecolor{ansi-green-intense}{HTML}{007427}
+%     \definecolor{ansi-yellow}{HTML}{DDB62B}
+%     \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+%     \definecolor{ansi-blue}{HTML}{208FFB}
+%     \definecolor{ansi-blue-intense}{HTML}{0065CA}
+%     \definecolor{ansi-magenta}{HTML}{D160C4}
+%     \definecolor{ansi-magenta-intense}{HTML}{A03196}
+%     \definecolor{ansi-cyan}{HTML}{60C6C8}
+%     \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+%     \definecolor{ansi-white}{HTML}{C5C1B4}
+%     \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+%     % commands and environments needed by pandoc snippets
+%     % extracted from the output of `pandoc -s`
+%     \providecommand{\tightlist}{%
+%       \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+%     \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+%     % Add ',fontsize=\small' for more characters per line
+%     \newenvironment{Shaded}{}{}
+%     \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+%     \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+%     \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+%     \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+%     \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+%     \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+%     \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+%     \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+%     \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+%     \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+%     \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+%     \newcommand{\RegionMarkerTok}[1]{{#1}}
+%     \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+%     \newcommand{\NormalTok}[1]{{#1}}
+    
+%     % Additional commands for more recent versions of Pandoc
+%     \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+%     \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+%     \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+%     \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+%     \newcommand{\ImportTok}[1]{{#1}}
+%     \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+%     \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+%     \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+%     \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+%     \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+%     \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+%     \newcommand{\BuiltInTok}[1]{{#1}}
+%     \newcommand{\ExtensionTok}[1]{{#1}}
+%     \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+%     \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+%     \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+%     \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+%     % Define a nice break command that doesn't care if a line doesn't already
+%     % exist.
+%     \def\br{\hspace*{\fill} \\* }
+%     % Math Jax compatability definitions
+%     \def\gt{>}
+%     \def\lt{<}
+%     % Document parameters
+%     \title{NotesRewrite}
+    
+    
+    
+
+%     % Pygments definitions
+    
+% \makeatletter
+% \def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+%     \let\PY@ul=\relax \let\PY@tc=\relax%
+%     \let\PY@bc=\relax \let\PY@ff=\relax}
+% \def\PY@tok#1{\csname PY@tok@#1\endcsname}
+% \def\PY@toks#1+{\ifx\relax#1\empty\else%
+%     \PY@tok{#1}\expandafter\PY@toks\fi}
+% \def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+%     \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+% \def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+% \expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+% \expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+% \expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+% \expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+% \expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+% \expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+% \expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+% \expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+% \expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+% \expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+% \expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+% \expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+% \expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+% \expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+% \expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+% \expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+% \expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+% \expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+% \expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+% \expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+% \expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+% \expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+% \expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+% \expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+% \expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+% \expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+% \expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+% \expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+% \expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+% \expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+% \expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+% \expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+% \expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+% \expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+% \expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+% \expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+% \expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+% \expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+% \expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+% \expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+% \expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+% \expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+% \expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+% \expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+% \expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+% \expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+% \expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+% \expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+% \expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+% \expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+% \expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+% \expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+% \expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+% \expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+% \expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+% \expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+% \expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+% \expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+% \expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+% \expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+% \expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+% \expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+% \expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+% \expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+% \expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+% \expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+% \expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+% \def\PYZbs{\char`\\}
+% \def\PYZus{\char`\_}
+% \def\PYZob{\char`\{}
+% \def\PYZcb{\char`\}}
+% \def\PYZca{\char`\^}
+% \def\PYZam{\char`\&}
+% \def\PYZlt{\char`\<}
+% \def\PYZgt{\char`\>}
+% \def\PYZsh{\char`\#}
+% \def\PYZpc{\char`\%}
+% \def\PYZdl{\char`\$}
+% \def\PYZhy{\char`\-}
+% \def\PYZsq{\char`\'}
+% \def\PYZdq{\char`\"}
+% \def\PYZti{\char`\~}
+% % for compatibility with earlier versions
+% \def\PYZat{@}
+% \def\PYZlb{[}
+% \def\PYZrb{]}
+% \makeatother
+
+
+%     % Exact colors from NB
+%     \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+%     \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+%     % Prevent overflowing lines due to hard-to-break entities
+%     \sloppy 
+%     % Setup hyperref package
+%     \hypersetup{
+%       breaklinks=true,  % so long urls are correctly broken across lines
+%       colorlinks=true,
+%       urlcolor=urlcolor,
+%       linkcolor=linkcolor,
+%       citecolor=citecolor,
+%       }
+%     % Slightly bigger margins than the latex defaults
+    
+%     \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+\usepackage{booktabs}
+    \begin{document}
+     
+%    \maketitle
+%    
+     
+    
+    % 首页
+    \newpage
+	{
+    \centering
+	{\scshape\LARGE 电子科技大学 \par}
+	\vspace{1cm}
+	{\huge\scshape\Large 奖学金申请准备 \par}
+	\vspace{1.5cm}
+    %************************ 输入文章题目 *****************************************
+	{\huge\bfseries 第一届中国近现代科学家奖学金评选\par}
+	\vspace{2cm}
+	{\Large\itshape Ruixu Geng\par}
+	\Large\itshape	https://github.com/gengruixu
+	\vfill
+    通知网站: \textsc{\small https://xgb.uestc.edu.cn/new/notice/5bbda618b00c372083482b85}
+	\vfill
+	{\large \today\par}
+    }
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    % \providecommand{\tightlist}{%
+    %   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    % \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % % Add ',fontsize=\small' for more characters per line
+%    \newenvironment{Shaded}{}{}
+
+
+    % 开始目录
+    \newpage
+    \setcounter{secnumdepth}{7}
+    \setcounter{tocdepth}{7}
+    \tableofcontents
+    % 开始正文
+    \newpage
+%%**********************************************************%%%%%%%  
+    \section{考核范围}
+    考试分为笔试和面试两个部分.
+    \subsection{笔试大纲}
+    \begin{itemize}
+        \item 题型：选择、填空、判断、简答等
+        \item 题目范围及分值
+        \begin{itemize}
+            \item 各校校史（30分）
+            \item 各校著名科学家校友事迹（40分）
+            \item “两弹一星功勋奖章”获得者事迹（30分）
+        \end{itemize}
+    \end{itemize}
+
+    \subsection{面试大纲}
+    \begin{itemize}
+        \item 题型: 开放式必答题1个+评委提问1-2个
+        \item 题目范围
+        \begin{itemize}
+            \item 开放式必答题包括但不限于各校著名科学家校友事迹等
+            \item 评委提问范围包括但不限于学生简历相关
+        \end{itemize}
+    \end{itemize}
+    
+%%*****************************************************************
+    \section{笔试准备资料}
+    笔试准备资料包括各校校史,著名科学家校友事迹和两弹一星获得者事迹
+    \subsection{电子科技大学校史}
+    \subsubsection{学校历史综述}
+    电子科技大学原名成都电讯工程学院，成立于1956年9月，是在周恩来总理的亲自部署下，由交通大学（现上海交通大学、西安交通大学）的电讯工程系、华南工学院（现华南理工大学）的电讯系和南京工学院（现东南大学）的无线电系合并创建而成的新中国第一所无线电大学。学校成立以来，随着国务院机构改革的进程，先后归属二机部、一机部、三机部、四机部、电子工业部、机械电子工业部、电子工业总公司、信息产业部负责管理。1960年被列为全国重点高等院校。1961年划归国防部国防科学技术委员会管理。1970年划归四机部和解放军总参通信兵部共同管理。1988年更名为电子科技大学。1997年首批成为国家“211工程”重点建设大学。1998年，国家冶金部所属成都冶金干部管理学院并入电子科技大学。2000年独立建制划归教育部管理。2001年成为国家“985工程”重点建设大学。
+
+    建校之初，学校定位为我国培养无线电工业干部（人才）的主要基地，重点为我国无线电工业部门培养专业技术人才， 1982年以来，学校先后增设了管理学、经济学、法学、文学等学科专业。在国家和教育部的大力支持下，经过“211工程”和“985工程”的建设，电子科技大学在学科建设、人才培养、师资队伍、科学研究、国际合作、社会服务以及整体办学条件等方面均跃上了一个新的台阶。目前，电子科技大学设有23个学院（部），5个研究院，2个独立学院，形成了从本科到硕士研究生、博士研究生等多层次、多类型的人才培养格局，已成为一所完整覆盖整个电子类学科，以电子信息科学技术为核心，以工为主，理工渗透，理、工、管、文协调发展的多科性研究型大学。
+
+    电子科技大学秉承“求实求真、大气大为”的精神，以人才培养为根本，以服务国家、地方经济建设和国防建设为己任，开拓进取，锐意创新，努力把学校建设成为特色性、研究型、开放式的高水平大学
+
+    \subsubsection{详细时间节点}
+    1955年3月30日，高等教育部党组织向周恩来总理呈送《关于沿海城市高等学校1955年建设任务处理方案的报告》中提出：“将华南工学院、南京工学院、交通大学等校的电讯工程有关专业调出，在成都建立无线电工程学院。”
+    
+    5月，国务院同意高等教育部的报告，并决定由高等教育部和第二机械工业部共同负责筹建成都无线电工程学院。
+
+
+1955年7月21－28日，在北京第二机械工业部会议室，召开成都无线电工程学院的筹备会议；会议决定，成立成都无线电工程学院筹备委员会以及下属秘书、基建、教务三个组，并从即日起开始办公。
+
+
+1956年2月4日，中共四川省委常委会议正式决定，学院院址设在成都市东北郊府青路以东、沙河以西的保和乡地区。随后开始大规模基建工作。
+
+
+1956年9月初，沙河校区电子通信大楼、教学主楼两翼和4幢教职工眷属宿舍15639平方米、3幢教职工单身宿舍15505平方米，以及教职工食堂1329平方米，均以竣工。
+
+1956年9月29日下午3时，全校3000多名师生员工和来宾，在主楼东边体育场隆重举行了成都电讯工程学院首届开学典礼；中国的科学巨匠、一代文学大师郭沫若手书的“成都电讯工程学院”校名已经成为学校创建的象征载入史册。
+
+
+1958年，设夜校部，创办夜大学。
+
+
+1960年，被列为全国重点大学。
+
+
+1961年，划归国防部国防科学技术委员会管理；被确定为七所国防工业院校之一。
+
+
+1970年，划归四机部和解放军总参通信兵部共同管理。
+
+
+1971年，招收工农兵学员。
+
+
+1977年，恢复高考招生。
+
+
+1978年，恢复研究生教育。
+
+
+1988年，更名为电子科技大学；建立成人教育学院。
+
+
+1992年，成立电子工程学院、信息材料工程学院。
+
+
+1993年，成立管理学院、人文社科学院。
+
+
+1994年，成立通信与信息工程学院、计算机科学与工程学院。
+
+
+1997年，成为国家首批“211工程”重点建设大学；成立体育系。
+
+
+1998年，国家冶金部所属成都冶金干部管理学院并入电子科技大学。
+
+
+2000年，独立建制划归教育部管理；建立研究生院。
+
+
+2001年，成为国家“985工程”重点建设大学；成立微电子与固体电子学院、物理电子学院、光电信息学院、自动化学院、机械电子工程学院、生命科学与技术学院、应用数学学院、外国语学院、示范性软件学院、体育部。
+
+
+2002年，成立电子科技大学中山学院。
+
+
+2003年，成立电子科学技术研究院。
+
+
+2004年，成立电子科技大学成都学院。
+
+
+2006年，教育部、信息产业部签署共建电子科技大学协议；成立政治与公共管理学院、空天科学技术研究院。
+
+
+2007年，成立经济与管理学院、东莞电子科技大学电子信息工程研究院；占地3800余亩的清水河校区投入使用。
+
+
+2008年，成立国际教育学院。
+
+
+2009年，成立英才实验学院、马克思主义教育学院、数学科学学院。
+
+
+2010年，成立无锡研究院。
+
+
+2011年，入选教育部“卓越工程师教育培养计划”；成立能源科学与工程学院、信息与软件工程学院。
+
+
+2012年，成立资源与环境学院、航空航天学院、成都研究院。
+
+
+2013年，成立格拉斯哥学院；与四川省人民医院共建医学院。
+
+
+2014年，成立基础与前沿研究院。
+
+
+2014年1月，四川省编办正式下文，四川省人民医院成为电子科技大学附属医院，正式开始了医学院的建设。 
+
+
+2015年，成立网络空间安全学院。
+
+
+2016年，国家国防科技工业局和教育部共建电子科技大学；四川省肿瘤医院加入共建电子科技大学医学院行列。
+
+
+2017年，四川省人民政府正在将成都铁路卫生学校并入电子科技大学医学院基础医学部。  
+
+
+2017年1月18日，学校被四川省人力资源和社会保障厅认定为四川省级大学生创新创业园区。 
+
+
+2017年9月，学校入选国家“双一流”（世界一流大学和一流学科）建设高校名单。 
+
+\subsubsection{历任校长和党委书记}
+历任校长及任期如表\ref{xiaozhang}所示;
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{@{}|l|l|l|l|@{}}
+    \hline
+    姓名 & 任期 & 姓名 & 任期 \\ \hline
+    吴立人 & 1956.6-1958.1 & 邹寿彬 & 2001-2009.6 \\ \hline
+    王甲纲 & 1978.5-1983.4 & 汪劲松 & 2009.7-2013.1 \\ \hline
+    顾德仁 & 1983.4-1986.4 & 李言荣 & 2013.4— \\ \hline
+    刘盛纲 & 1986.6-2001.4 &  &  \\ \hline
+    \end{tabular}
+    \caption{历任校长}
+    \label{xiaozhang}
+    \end{table}
+
+历任党委书记及任期如表\ref{shuji}所示;
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{@{}|l|l|l|l|@{}}
+    \hline
+    姓名 & 任期 & 姓名 & 任期 \\ \hline
+    吴立人 & 1956.6-1958.1 & 邹寿彬 & 2001-2009.6 \\ \hline
+    王甲纲 & 1978.5-1983.4 & 汪劲松 & 2009.7-2013.1 \\ \hline
+    顾德仁 & 1983.4-1986.4 & 李言荣 & 2013.4— \\ \hline
+    刘盛纲 & 1986.6-2001.4 &  &  \\ \hline
+    \end{tabular}
+    \caption{历任党委书记}
+    \label{shuji}
+    \end{table}
+
+
+    \subsection{电子科技大学著名科学家校友事迹}
+    主要包括但不限于一下科学家: 
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{|l|l|l|l|l|}
+        \hline
+        刘盛纲 & 林为干 & 李乐民 & 李言荣 & 周炳琨 \\ \hline
+        谭述森 & 张煦 & 蒋华北 & 李小文 & 孙亚芳 \\ \hline
+        席政 & 丁磊 & 孙亚芳 & 吴伟仁 & 郭光灿 \\ \hline
+        张景中 & 李朝义 &  &  &  \\ \hline
+        \end{tabular}
+        \caption{需要准备的本校著名科学家校友}
+        \label{my-label}
+        \end{table}
+
+    \subsubsection{刘盛纲院士}
+
+刘盛纲，教授，中国科学院院士（学部委员），电磁场与微波技术学科博士生导师。1933年12月出生于安徽肥东，1955年毕业于南京工学院（现东南大学）并留校任教，1956年在成都电讯工程学院攻读苏联专家的研究生并任专业翻译，1978年任教授。1985年任成都电讯工程学院院长，1988年成都电讯工程学院改名电子科技大学后，1988年至2001年4月任电子科技大学校长。他是“强辐射”,“大功率微波”及“电磁场与微波”三个国家重点实验室的学术委员会主任。
+
+刘盛纲教授1954年加入中国共产党。1955年毕业于南京工学院（现东南大学）无线电系（现东南大学信息科学与工程学院），1956至1958年在成都电讯工程学院修完研究生课程。
+
+历任成都电讯工程学院讲师、教授、副院长、院长，中国科学院技术科学部学部委员，中国电子学会第二届常委理事和真空电子学会第二、届副主任。是中共十二大代表。1978年任教授，1980年获全国劳动模范称号。1980年被选为中国科学院学部委员，1984年任成都电讯工程学院副院长。1985年获全国五一劳动奖章。专于微波电子学，在研究电子回旋脉塞理论方面有新成就。著有《微波电子学导论》、《相对论电子学》等被国内外公认为本领域经典的著作。1986年至2001年4月任电子科技大学校长。
+
+刘盛纲教授共出版著作四部：（1）《微波电子学导论》获电子部优秀教材特等奖及国家教委高等学校优秀教材一等奖；（2）《电子回旋脉塞及回旋管的进展》；（3）专著《相对论电子学》获全国优秀科技图书一等奖；（4）刘盛纲学术论文集》。其中，《相对论电子学》及《微波电子学导论》已被公认为本领域的经典著作并已被推上国际互联网。在微波电子学、相对论电子学等领域发表论文150余篇，在电子回旋脉塞、自由电子激光方面提出了一系列新概念，建立了有关理论，作出了开创性及奠基性工作，得到国际上的公认和好评，获国家自然科学奖、国家级、部省级科技进步奖30多项。
+
+    \subsubsection{林为干院士}
+
+林为干，男，1919年10月生，广东台山县人，中共党员，中国科学院院士，全国劳动模范，电子科技大学教授、博士生导师。中国电子学会理事，IEEE微波理论与技术学会北京分会主席。林为干院士是微波理论专家，由于其在国内微波理论方面作出的开拓性贡献而冠有“中国微波之父”的尊称。林为干院士1939年毕业于清华大学，后留学美国获博士学位。在《中国科学》《J．A．P》《IEEEMTT》等国内外杂志上发表论文80余篇。培养出50余位博士，曾为全国之冠。1978年获全国科学大会和四川省科学大会奖。著有《微波网络》《微波理论与技术》《电磁场工程》《电磁场理论》等。
+
+
+2015年1月23日9点30分在成都逝世，享年96岁。2015年1月29日，林为干先生遗体告别仪式在成都举行。
+
+微波（通常是指波长为1米至1毫米之间的电磁波）形成为一门技术科学开始于上世纪30年代，在二次大战期间得到了全面的发展。当时出于反法西斯战争的需要，微波的研究集中在雷达方面。在这以后，随着应用研究的不断扩展，微波理论与技术日趋完善而又不断向纵深及交叉学科发展。《微波理论与技术汇刊》1994年7月号的3位法国学者认为近代卫星广播通信业所用的多模技术是由拉贡（Ragan）及林为干提出来的，其发展的基础是根据林为干及库恩（Cohn）的工作。此项工作至今尚在发展。
+
+
+林为干对传输线理论进行了系统的研究，拓宽和发展了保角变换在电磁场中的应用。他从1962年在《物理学报》18卷首页上发表的《关于外矩内圆同轴线的工作特性》论文后的30年内，连续在国内外学术刊物上发表了几十篇这方面的论文，其理论在国内外得到了广泛地应用。其中他和助手钟祥礼副教授发表在《物理学报》1963年第4期的论文《传输线特性阻抗的一个新计算方法》被国外学者称为“林、钟方法”。英国1972年出版的马可尼丛书第2卷第4章的作者哥斯顿（Gunston）认为林、钟的方法是到那时为止最准确的方法。林为干于1979年1月和1980年9月先后在《电子学报》上发表的《椭圆直波导理论》、《扇形、椭圆、半椭圆波导的研究》这两篇重要论文，纠正了国外的某些结论，成功地为中国制定椭圆直波导标准尺寸提供了依据。
+
+
+改革开放后，林为干开展了毫米波技术和宽带光纤技术等方面的系统研究，完成了一大批国家科研任务，取得了一系列成果，获得了国家科技进步奖等多种奖项。正是由于他在国内微波理论方面作出的开拓性贡献，香港中文大学在1993年邀请林为干做学术报告时，尊他为“中国微波之父”。
+
+    \subsubsection{李乐民院士}
+李乐民，男，1932年05月出生。教授，中国工程院院士、博士生导师。
+
+从事通信技术的科研与教学工作 40 余年，研究方向为数字信息传输与通信网，近年侧重通信网与宽带通信技术。 发表论文 200 余篇，编著书 4 本，获国家、部、省奖 18 项。 70 年代初负责研制成我国第一台载波话路用 9600 比特 / 秒高速数传机，解决自适应均衡关键技术并有创新。 80 年代初开始的 “ 数字通信中传输性能与抑制窄带干扰研究 ” 有创造性突破，提出抗窄带干扰新理论和技术。在美国 IEEE 通信学报发表论文，被美国、原苏联、德国、法国、日本、韩国、南斯拉夫、芬兰等国学者引用、评价 80 余次。历年来为多项工程研制了关键通信设备。近年来对宽带通信网络技术进行研究，作了新的理论分析和研制成有关设备，带领研究生在该方向发表论文数十篇。 培养硕士生 50 余名、博士生 50 余名、博士后 7 名。
+
+    \subsubsection{李言荣院士}
+    李言荣，男，汉族，1961年7月生，四川省射洪县人，中共党员，电子科技大学教授，博士生导师，1992年中国科学院长春应用化学研究所博士研究生毕业，中国工程院院士。
+
+    发明了倒筒式溅射旋转沉积薄膜制备技术，解决了大面积单、双面YBCO超导薄膜面内均匀性和两面一致性，形成了小批量产品。发明了介电薄膜的纳米自缓冲层技术，显著提高了多元氧化物介电薄膜工程应用的耐压能力和生长取向特性，应用于航空发动机叶片状态传感技术中。利用介电/半导体集成薄膜技术，积极推动新型集成电子器件的发展。主要成果分别获得2003年和2007年国家技术发明二等奖（均为第一完成人），发表SCI、EI收录论文210篇，其中国外主要刊物125篇，授权发明专利15件。
+
+    \subsubsection{张熙院士}
+    “中国通信界元勋”
+    张煦系我国光纤通信科学元勋，1940年7月在哈佛大学获得博士学位。学成归国后任交通大学教授。1946年，年轻丧偶的张煦在茅以升家中与交通大学土木工程院院长李谦若千金李梅邂逅，张煦时为茅以升的秘书，茅以升受命主持出国人员派遣工作，张煦参与考试出题，他的才学和人品都深得茅以升的器重。是年9月15日，张煦与李梅喜结连理。1956年，张煦只身调往四川，参与创建成都电讯工程学院。家庭重担全部落在李梅一人身上。
+    1957年，与世无争的张煦无端被卷入政治风暴，从此步入坎坷人生。
+    文章憎命达。艰难时世，在李梅的支持下，张煦虽被打入另册，依然执着于中国电信科教事业发展，在科研和教学道路上锲而不舍，先后编著12部高等学校教材和科技参考书。上世纪60年代，半导体技术日趋成熟，张煦率先在国内高校中首次开出《晶体管电路分析》；至70年代初，数字通信技术初见端倪，张煦当机立断，转而开数据传输教学之先河。他翻译的《数据通信原理》一书，被认为是国内第一本关于数据通信的系统教材。上世纪70年代末，久处逆境的张煦迎来了科学的春天。1978年，他被调回阔别22年的上海交通大学。这一年，他已65岁，是一个年逾花甲的老人了。80年代初，光纤通信技术在国外方兴未艾，张煦审时度势，再度捷足先登，为博士生和硕士生开设光纤通信原理课程，先后主编、编撰出版5本专著。
+    1994年，已届八旬高龄的张煦出版了《信息高速公路》一书。半个世纪以来，张煦先后亲授近千名高级科研与教学人才，著述（译著）近900万字。荣膺诺贝尔奖之香港中文大学原校长高锟认为，张煦对中国通信技术的发展不遗余力，被称为“中国通信界元勋”当之无愧。
+
+    \subsubsection{蒋华北教授}
+    \subsubsection{李小文院士}
+
+    李小文男，中国科学院院士，自动化学院教授、博士导师
+
+　　1963－1968年就读于成都电讯工程学院电讯系无线电测量仪器专业；1979年到美国加州大学圣巴巴拉分校地理系地理学与遥感专业攻读硕士，并于1981年取得地理学与遥感专业硕士学位；1985年获得加州大学圣巴巴拉分校地理学与遥感专业博士学位及电子与计算机工程系图像处理专业硕士学位。2002年起兼任中科院遥感应用研究所所长，现任电子科技大学教授、博士生导师，国家973项目“地球表面时空多变要素的定量遥感理论及应用”首席科学家，国家863 项目“我国典型地物标准波谱知识库”建议人及专家组专家，国家863信息领域专家委员会成员，第五届国务院学位委员会学科评议组成员.。
+
+　　主要科研成就： 70年代末以来，李小文长期从事地学与遥感信息科学领域的研究工作，主要研究领域为地面目标二向性反射几何光学模型、遥感模型反演理论、非同温表面热红外辐射的有效发射率及其方向性模型等，在国内外遥感界享有盛誉。他创建了Li-Strahler几何光学模型，并入选国际光学工程学会“里程碑系列”；在国家基金委，科技部的持续支持下，他又相继创建了不连续植被的间隙率模型，相互荫蔽效应的几何光学模型和几何光学－辐射传输混合模型；他提出了有限厚度介质层内的路径散射模型，首次获得了有关四分量多次反弹的完整表达式，从根本上完善了描述植被二向性反射模型体系。他又提出了将介质层中的路径散射及层间多次反射进行分解的新思路；纠正了传统的BRDF互易原理证明中的错误；他建立了非同温表面的有效发射率及其方向性模型；他和他的科研团队的一系列研究成果有力地推动了定量遥感研究的发展，并使我国在多角度遥感领域保持着国际领先地位。
+
+　　1981年以来，李小文发表研究论著160篇（部），已取得的研究成果和水平得到了国际公认，研究论文被国内外科研人员广泛引用: 论文有28篇被SCI收录，38篇SCI引用557次，44篇被EI收录，19篇被CSCD收录。（2001年查）。他1981年的硕士论文1985年被美国《遥感手册（第二版）》收入，1985年论文于1997年入选国际光学工程学会“里程碑系列”，仅此篇就被SCI引用一百余次；1990年获国际劳力士雄才伟略奖，1994年获中国科学院自然科学一等奖，2000年获中国高校科学技术一等奖，2000年获首都劳动奖章，2001年获长江学者成就奖一等奖，2002年获中央组织部，宣传部，人事部，科技部共同授予“杰出专业技术人才”称号。
+
+　　李小文院士指导了多名博士，硕士生，推动我国在短期内形成了一支具有创新能力的遥感机理及其应用的研究和试验队伍。目前他的科研团队的研究方向有遥感与地理信息系统、地表过程与全球变化遥感、数字流域与数字水文、光学遥感机理与信息处理、遥感像元尺度效应与尺度转换理论、热红外遥感、微波遥感、遥感建模与反演、气候生态与水资源数值模拟、定量遥感与陆面四维同化、多角度遥感技术与野外非接触测量理论与技术、植物与生物量遥感、城市扩展与土地利用变化遥感、水土资源遥感、多维GIS 与WEB GIS、专题地理信息系统与决策支持系统等。其科研团队开展的研究项目分别来自中国科学院、国家科技部、教育部、国家基金委、国家航天局、国土资源部及其他有关部门和国际合作，曾获多个国家科技进步奖、中国科学院自然科学奖、中国高校科学技术奖和部委奖等。
+
+    \subsubsection{吴伟仁院士}
+    \subsubsection{张景中院士}
+    张景中中国科学院院士，计算机科学与工程学院教授，博导
+
+　　1936年生于河南省汝南县，计算机科学家、数学家和数学教育家、四川省计算机学会理事长，《计算机应用》期刊主编，“全国五一劳动奖章”获得者，中国科学院成都计算机应用研究所名誉所长，广州大学计算机科学与教育软件学院名誉院长，教育部华中师大教育信息技术工程研究中心学术委员会主任。曾任中国科学院成都数理研究室主任、成都计算机应用研究所副所长，中国科普作家协会理事长、广州大学计算机教育软件研究所所长。1959年毕业于北京大学数学力学系，1979年任教于中国科学技术大学，1986年任中国科学院研究员。2008年10月来电子科技大学工作。多年来，张景中院士承担国家攀登项目和国家973项目有关数学机械化的科研项目。
+
+　　张景中院士长期致力于计算机科学和数学的研究，在机器证明、教育数学、距离几何及动力系统等研究领域做出了突出的贡献。他提出了定理机器证明的一系列新算法，包括通过用检验有限个实例证明一般几何定理的“数值并行法”、判定代数系统相关性的“含参结式法”、求解代数方程组的“WR相对分解分解算法”、有关Ritt-Wu特征列的“弱非退化条件”等等。所创建的几何定理可读证明自动生成的理论和算法，被国外同行誉为计算机处理几何问题发展道路上的里程碑，是自动推理领域30年来最重要的进展之一。
+
+　　张景中院士提出了“教育数学”的概念和基本理论，并积极倡导发展这一全新的学科。 在此方向，他提出了三角、几何、代数相互渗透的新的初等数学教学体系；提出了非ε语言的极限概念表述和实数理论的连续归纳法；实现了不用极限或无穷小建立微积分的基本理论和方法。
+
+　　1980年以来，张景中院士发表学术论著150多篇（册），出版专著及科普书17部 。1982年获国家发明二等奖，1995年获中科院自然科学奖一等奖和中国图书奖，1997年获国家自然科学奖二等奖，2003年获全国科普创作一等奖、五个一工程奖和国家图书奖，2005年获国家科技进步二等奖。
+
+    \subsubsection{谭述森院士}
+    \subsubsection{周炳琨院士}
+    \subsubsection{陈星弼院士}
+    陈星弼中国科学院院士，微电子与固体电子学院教授，博士导师
+
+　　男，1931年1月出生于上海，1952年毕业于同济大学，后在厦门大学、南京工学院及中国科学院物理研究所工作。1956年开始在成都电讯工程学院工作。1980年美国俄亥俄州大学作访问学者。1981年加州大学伯克莱分校作访问学者、研究工程师。1983年任电子科技大学微电子科学与工程系系主任、微电子研究所所长。曾先后被聘为加拿大多伦多大学电器工程系客座教授，英国威尔斯大学天鹅海分校高级客座教授。1999年当选中国科学院院士。
+
+　　陈星弼教授在新型功率（电力电子）器件及其集成电路这一极其重要领域中，做出了一系列重要的贡献与成就。他率先在中国提出立项并作为第一主研完成了VDMOST、IGBT、Offset-Gate MOST、LDMOST、SPIC及RESURF、SIPOS等器件及有关技术。他对垂直型功率器件耐压层及横向型功率器件的表面耐压区唯一地作出了优化设计理论且得到实际应用。对功率器件的另一关键技术——结终端技术——作出了系统的理论分析及最优化设计方法并应用在各种电力电子器件的设计中取得良好的效果。他还提出了斜坡场板这一新结构的理论。他的三项重要发明能使电力电子器件在一个新的台阶上发展。这些发明打破了传统极限理论的约束，使器件的电学性能得到根本性的改进。第一种第二种发明突破了高速功率MOS高压下导通电阻极限理论，得到新的极限关系。第一种发明被Siemens公司实现，98年在国际电子器件会议（旧金山）发表。第二种发明及第三种发明已在国内实验成功。根据第三种发明来制造高压（功率）集成电路中的横向器件，可以在工艺上和常规的CMOS及BiCMOS工艺兼容，使这种电路不仅性能优越，而且成本节省，可立足国内，并正在走向产品开发。他作为唯一（或第一）作者（或主研）已在IEEE等学术刊物发表论文40多篇，出版著作五种（六册），取得美国及中国发明专利权七项，获得国家发明奖及国家科技进步奖二项，省部级奖十三项。圆满完成八五国家自然科学基金重点项目、军事预研项目及国家八五科技攻关重大项目，并获得国家八五科技攻关先进个人，受到江泽民总书记等党和国家领导人接见。 2002年8月获信产部信息产业重大技术发明奖（三项中排第一），2002年8月获（美国3D公司杰出创新技术认可奖）及评价，不但高度评价本项目技术创新的意义，而且高度评价对环保的意义。有四项部级鉴定的新功率器件与功率集成电路均被评为“结构属国际首创”“性能属国际领先”。
+
+　　陈星弼教授是中国电子学会会士、美国IEEE高级会员。多次出访国外进行科技学术交流。他热爱祖国、忠诚党的教育事与科学事业。学识渊搏、治学严谨、工作刻苦。有坚实的基础理论，能及时抓住新方向，很快深入，既能发现问题有能解决问题。1991年起享受国务院特殊津贴，1997年被评为电子部优秀教师，1998年被评为全国优秀教师。四川省学术与技术带头人
+
+    \subsubsection{李朝义院士}
+    李朝义中科院院士、生命科学与技术学院教授、博士导师
+
+　　李朝义，男，中国科学院院士，生命科学与技术学院教授、博士导师。
+
+　　神经科学家。1934年出生于重庆。1956年中国医科大学毕业。1961年复旦大学研究生毕业。现任中国科学院上海生命科学研究院生命中心研究员。1999年当选为中国科学院院士和国际脑研究组织（IBRO）亚太地区委员会理事。
+
+　　先后在德国马克斯－普朗克生物物理化学研究所、美国普林斯顿大学、比利时鲁文基督大学、加拿大麦基尔大学、日本九州工学院、和法国国家科学研究中心任客座科学家。受聘为复旦大学、中国科技大学、华中科技大学、暨南大学和第三军医大学兼职教授和荣誉教授。曾担任国家基金委神经科学、心理学、病理生理学、和医学评审组组长，和中国科学院重大交叉前沿研究项目“脑和意识研究”首席科学家。现兼任“中国神经科学杂志”主编。
+
+　　主要从事视觉中枢研究，在国际刊物上发表了四十余篇研究论文（见publication list）。这些论文揭示了在视网膜、外膝体和视皮层各级神经元的感受野外面，都存在着一个范围比感受野大几十倍的“ 整合野”，系统地阐明了整合野在复杂图像信息处理中的重要性。在此基础上提出了感受野“ 三重结构”的新理论。这些结果已被国外广泛引用，并被国外学者应用于解释人类脑电图对图形刺激的反应，以及应用于神经网络和人工智能等研究领域。在视觉信息大范围整合研究方面处于国际前沿，该领域目前已成为国际上研究复杂视觉信息处理神经机制的热点。由于以上贡献，先后获得中国科学院自然科学二等奖（1991年）、国家自然科学二等奖（1997年）、和何梁何利科学与技术进步奖（2000年）。
+
+    \subsubsection{其他建校初期的知名教授}
+**陈湖** 建国后，历任交通大学教授，成都电讯工程学院教授、无线电系主任，中国邮电通信学会电话交换技术专业委员会副主任。中国民主同盟盟员。是第三、六届全国人大代表，第五届全国政协委员。长期从事有张电通信教学和研究工作。编著有《电话学》、《市内电话学》、《市内电话网技术设计基础》。1929年毕业于交通大学电机系，并留校任教。1956年调入成都电讯工程学院，曾任无线电技术系系主任等职。陈湖是我国著名的有线电通信专家，对自动电话的基础研究有较深的造诣。1947年，他编写了我国第一部电话专著《电话学》，1958年他领导研制了全国第一台五门全电子交换机。
+
+**周玉坤** 教授1902年正月初三出生，1924年毕业于交通大学，1926年赴美留学，曾任美国贝尔实验室及英国曼布雷研究所研究员。在抗日烽火蔓延的艰苦岁月，为了投身抗日战争，1938年他毅然回国，负责滇缅公路全线通讯工程建设，后于重庆任交通部材料总署副署长兼总工程师。抗战胜利后，又分别任中央大学、交通大学、之江大学教授、浙江省电话局总工程师等职。新中国成立前夕任上海工专（上海机械学院前身）代理校长兼教授，解放军进驻上海时，面对国民党实施的破坏城市计划，周老积极组织、领导护校活动，使学校免遭破坏。1952年全国第一次院系调整时，周教授被任命为交通大学电讯系主任，被聘为二级教授，并被选举为上海市政协委员。1956年全国第二次院系调整，被任命为我院筹备领导小组主要成员，建院后为我院一系第一任系主任。同时被选为四川省政协委员、成都市人大代表、九三学社成都市委委员。
+
+**陈俊雷**，1937年获浙江大学学士学位，1946年获美国哈佛大学硕士学位。曾任厦门大学电机工程系教授，上海电力公司业务处工程师，国营南京电工厂技术课工程师、课长。1957年调入成都电讯工程学院电子器件系电子管教研组任教，1958年任该系504教研组主任。
+
+**陈茂康**，1914年获美国康奈尔机电系学士学位，1915年获美国协和大学电工系硕士学位。1953年调入华南工学院电讯系任教授，1956年调入成都电讯工程学院，主讲电工原理、电力实验、无线电实验、电磁波学、雷达学等课程。
+
+**陈章**，1921年获交通大学电机系学士学位，1925年获美国普渡大学电机系硕士学位。1955年任成都电讯工程学院筹备委员会委员，参与了学院的筹建工作。陈章十分注重电信人才的培养, 力倡革新，创建了电信和电力两个研究所,译有《无线电工程》等著作。
+
+**邓光禄**，1921年赴美国南加州大学留学， 1948-1949年赴美国南加州大学研究院研究图书学。解放后，先后任华西大学、西南师范大学、重庆大学等校图书馆馆长。1957年调入成都电讯工程学院任图书馆馆长。邓光禄长期从事图书馆工作，致力于英文、图书馆学、世界史的研究。
+
+**冯秉铨**，1930年获清华大学理学学士学位，1934年获燕京大学硕士学位，1946年获哈佛大学博士学位并留校任教。1955年7月至1956年7月兼任成都电讯工程学院筹委会委员及教务部主任。著有《电声学基础》、《无线电发送设备》等著作，主讲物理学、电磁学、理论力学、近代物理学、应用电子学等课程。
+
+**谢立惠**，1931年获中央大学（1949年更名南京大学）物理系学士学位。1958年后历任成都电讯工程学院院长、教授、院长顾问、副院长。谢立惠长期从事物理学的教学和研究工作，是我国雷达技术最早的研制者之一。他积极从事工程高等教育改革研究，对推动我国高等教育改革产生了积极的作用。
+
+**毛钧业**，1942年获交通大学电机工程系学士学位。1956年调入成都电讯工程学院，同年10月受学院委托组织筹建了我国第一个无线电零件系（电子科技大学微电子与固体电子学院的前身），1958年任该系系主任。毛钧业长期从事半导体材料与器件的教学和科研工作，著有《电报学》、《微波半导体器件》等著作。
+
+
+    \subsection{两弹一星获得者事迹}
+    % Add a bibliography block to the postdoc
+    “两弹一星”的研制成功，是中华民族为之自豪的伟大成就。为了在新形势下大力弘扬研制“两弹一星”的革命精神和优良传统，党中央、国务院、中央军委决定，对当年为研制“两弹一星”作出突出贡献的23位科技专家予以表彰，并授予于敏、王大珩、王希季、朱光亚、孙家栋、任新民、吴自良、陈芳允、陈能宽、杨嘉墀、周光召、钱学森、屠守锷、黄纬禄、程开甲、彭桓武“两弹一星”功勋奖章，追授王淦昌、邓稼先、赵九章、姚桐斌、钱骥、钱三强、郭永怀“两弹一星”功勋奖章。这23位科技专家，是人民共和国的功臣，是老一辈科技工作者的杰出代表，是新一代科技工作者的光辉榜样。让所有中国人记住他们！
+
+    “两弹一星”精神是民族的史诗，“两弹一星”的研制成功，为实现技术发展的跨跃，创造了宝贵的经验。“两弹一星”事业的发展，不仅使我国的国防实力发生了质的飞跃，而且广泛带动了我国科技事业的发展，促进了我国的社会主义建设，造就了一支能吃苦、能攻关、能创新、能协作的科技队伍，极大地增强了全国人民开拓前进、奋发图强的信心和力量。“两弹一星”的伟业，是新中国建设成就的重要象征，是中华民族的荣耀与骄傲，也是人类文明史上的一个勇攀科技高峰的空前壮举。
+
+    1999年9月18 日下午3时，大会在嘹亮的《国歌》声中开始。中共中央总书记、国家主席、中央军委主席江泽民发表重要讲话指出，中国人民有站在世界科技进步前列的勇气、信心、智慧和力量。中共中央政治局常委、全国人大常委会委员长李鹏主持大会。中共中央政治局常委、国务院总理朱鎔基宣读表彰决定。中共中央政治局常委李瑞环、胡锦涛、尉健行、李岚清出席表彰大会。
+
+    \subsubsection{于敏,氢弹，北京大学}
+    中国“氢弹之父”.敏没有出过国，在研制核武器的权威物理学家中，他几乎是惟一一个未曾留过学的人。于敏几乎从一张白纸开始，依靠自己的勤奋，举一反三进行理论探索。从原子弹到氢弹，按照突破原理试验的时间比较，美国人用了七年零三个月，英国四年零三个月，法国八年零六个月，前苏联四年零三个月。主要一个原因就在于计算的繁复。而当时中国的设备更无法可比，当时仅有一台每秒万次的电子管计算机，并且$95\%$的时间分配给有关原子弹的计算，只剩下$5\%$的时间留给于敏负责的氢弹设计。于敏记忆力惊人，他领导下的工作组人手一把计算尺，废寝忘食地计算。四年中，于敏、黄祖洽等科技人员提出研究成果报告69篇，对氢弹的许多基本现象和规律有了深刻的认识。
+
+于敏，核物理学家，国家最高科技奖获得者。1926年8月16日生于河北省宁河县（今天津市宁河区）芦台镇。1949年毕业于北京大学物理系。1980年当选为中国科学院学部委员（院士）。 原中国工程物理研究院副院长、研究员、高级科学顾问。在中国氢弹原理突破中解决了一系列基础问题，提出了从原理到构形基本完整的设想，起了关键作用。此后长期领导核武器理论研究、设计，解决了大量理论问题。对中国核武器进一步发展到国际先进水平作出了重要贡献。从20世纪70年代起，在倡导、推动若干高科技项目研究中，发挥了重要作用。 1982年获国家自然科学奖一等奖。1985年、1987年和1989年三次获国家科技进步奖特等奖。1994年获求是基金杰出科学家奖。1999年被国家授予“两弹一星”功勋奖章。1985年荣获“五一劳动奖章”。1987年获“全国劳动模范”称号。
+
+    \subsubsection{王大珩,卫星、原子弹，清华大学、英国伦敦帝国学院}
+王大珩（1915.2.26─2011.7.21），汉族，生于日本东京，原籍江苏省吴县（今苏州市）。“两弹一星功勋奖章”获得者，中国科协副主席、中国科学院院士、中国工程院院士，国际宇航科学院院士，著名光学家，中国近代光学工程的重要学术奠基人、开拓者和组织领导者，杰出的战略科学家、教育家，被誉为“中国光学之父”。
+
+1936年，毕业于清华大学物理系。1938年，赴英国留学，先后就读于帝国理工学院、谢菲尔德大学。1948年回国。归国后，王大珩开拓和推动了中国光学研究及光学仪器制造、特别是国防光学工程事业，曾获国家科技进步特等奖。在雷射技术、遥感技术、计量科学、色度标准等方面都作出了重要贡献，是高科技863计划的主要倡导者，倡议并促成中国工程院的成立。他先后主持制成中国第一片光学玻璃、第一台电子显微镜、第一台激光器和第一个遥感科学规划等。
+    \subsubsection{王希季,火箭、卫星，西南联合大学、美国弗吉尼亚理工学院}
+
+王大珩（1915.2.26─2011.7.21），汉族，生于日本东京，原籍江苏省吴县（今苏州市）。“两弹一星功勋奖章”获得者，中国科协副主席、中国科学院院士、中国工程院院士，国际宇航科学院院士，著名光学家，中国近代光学工程的重要学术奠基人、开拓者和组织领导者，杰出的战略科学家、教育家，被誉为“中国光学之父”。
+
+
+1936年，毕业于清华大学物理系。1938年，赴英国留学，先后就读于帝国理工学院、谢菲尔德大学。1948年回国。归国后，王大珩开拓和推动了中国光学研究及光学仪器制造、特别是国防光学工程事业，曾获国家科技进步特等奖。在雷射技术、遥感技术、计量科学、色度标准等方面都作出了重要贡献，是高科技863计划的主要倡导者，倡议并促成中国工程院的成立。他先后主持制成中国第一片光学玻璃、第一台电子显微镜、第一台激光器和第一个遥感科学规划等。
+    \subsubsection{朱光亚,原子弹、氢弹，西南联合大学、美国密歇根大学}
+朱光亚（1924.12.25~2011.2.26），汉族，湖北武汉人，中国核科学事业的主要开拓者之一，吉林大学物理学创始人之一，“两弹一星功勋奖章”获得者，入选“感动中国2011年度人物”，被誉为“中国工程科学界支柱性的科学家”、“中国科技众帅之帅”。 
+
+朱光亚1945年毕业于西南联合大学；1950年，获美国密执安大学博士学位；1980年，当选为中国科学院学部委员（院士）；1991年，任中国科协主席；1994年，被选聘为首批中国工程院院士，并任中国工程院院长、党组书记；1996年5月，被推举为中国科协名誉主席；1999年1月，任总装备部科技委主任。 
+
+朱光亚早期主要从事核物理、原子能技术方面的教学与科学研究工作；20世纪50年代末，负责并组织领导中国原子弹、氢弹的研究、设计、制造与试验工作，参与领导了国家高技术研究发展计划的制订与实施、国防科学技术发展战略研究，组织领导了禁核试条件下中国核武器技术持续发展研究、军备控制研究及武器装备发展战略研究等工作，为中国核科技事业和国防科技事业的发展作出了重大贡献。
+
+1945年（中华民国三十四年），抗战胜利后，蒋介石提出中国也要做原子弹。于是，国民政府决定派出吴大猷、曾昭抡、华罗庚三位科学家赴美国考察，并要求每位科学家推荐两名助手同去。当时吴大猷推举的两名助手，一名是李政道，另一名就是朱光亚。
+
+
+    \subsubsection{孙家栋,导弹、卫星，哈尔滨工业大学、苏联莫斯科茹科夫斯基空军工程学院}
+
+孙家栋，1929年4月生于辽宁瓦房店市，中科院院士、探月工程总设计师。 
+
+
+1948年，考入哈尔滨工业大学预科学习俄语。1951年，孙家栋和另外29名军人被派往苏联茹科夫斯基工程学院飞机发动机专业学习。1958年，毕业并获得全苏斯大林金质奖章，回国后被分配到国防部第五研究院一分院从事导弹原创工作。1960年，担任型号总体主任设计师。1967年，担任中国第一颗人造地球卫星技术负责人.1989年，孙家栋担任中国火箭进入国际市场谈判代表团团长。1996年，当选国际欧亚科学院院士。1999年，被授予两弹一星功勋奖章。 2010年1月11日，在国家科学技术奖励大会上，获得2009年度国家最高科学技术奖。
+
+
+2017年2月8日，获“感动中国2016年度人物”。孙家栋是北斗卫星导航工程、风云二号静止气象卫星航天工程的总设计师，继续活跃在中国航天技术的前沿领域。
+
+    \subsubsection{任新民,火箭、导弹、卫星，重庆兵工学校、美国密歇根大学}
+任新民（1915年12月05日-2017年2月12日），男，祖籍盛康镇任家湾 ，出生于安徽省宁国市，航天技术与液体火箭发动机技术专家，中国导弹与航天技术的重要开拓者之一。
+
+1940年毕业于重庆军政部兵工学校大学部。1945年赴美国密歇根大学研究院留学，先后获机械工程硕士和工程力学博士学位。1980年当选为中国科学院院士（学部委员），1985年当选为国际宇航科学院（IAA）院士 。领导和参加了第一个自行设计的液体中近程弹道式地地导弹液体火箭发动机的研制，曾获国家科学技术进步特等奖2项、求是基金杰出科学家奖、中国载人航天工作突出贡献者功勋奖章、“两弹一星”功勋奖章等。
+
+任新民是中国航天事业五十年最高荣誉奖获得者，从事导弹与航天型号研制工作，在液体发动机和型号总体技术上贡献卓著。曾作为运载火箭的技术负责人领导了中国第一颗人造卫星的发射；曾担任试验卫星通信、实用卫星通信、风云一号气象卫星、发射外国卫星等六项大型航天工程的总设计师，主持研制和发射工作。 是两弹一星元勋之一、“中国航天四老”(中国航天四老指的是任新民（1915-2017）、黄纬禄（1916-2011）、屠守锷（1917-2012）、梁守槃（1916-2009）这四位在中国航天界威望极高的科学家)之一。
+    
+    \subsubsection{吴自良,原子弹，北洋大学、匹兹堡卡内基理工学院(今卡内基·梅隆大学)、交通大学唐山工学院（西南交通大学）}
+吴自良（1917年—2008年），材料科学家，中国科学院院士，“两弹一星”功勋奖章获得者。浙江浦江人。
+
+1939年毕业于北洋工学院，1948年获美国匹兹堡卡内基理工大学博士学位。50年代，从事苏联低合金钢40X代用品的研究，对建立中国低合金钢系统有示范作用。60年代，领导并完成了铀同位素分离用“甲种分离膜”的研制任务。1988年转向研究高温超导体YBCO中的氧扩散机制，求得了精确的氧扩散率和扩散激活能，在磁控溅射c取向薄膜中，发现膜的增氧速度，端赖于垂直c－轴单晶的位错管道所提供的快速氧输运过程。1980当选为中国科学院院士（学部委员）。
+
+吴自良是上海市政协第五、六、七届常务委员，中国金属学会第一、二、三届理事，中国科学院上海微系统与信息技术研究所研究员。60年代，上海冶金所与原子能所、复旦大学等单位的科研人员组成第十研究室联合攻关，吴自良兼任该室主任，主持研制分离铀同位素的核心部件甲种分离膜，于1964年试制成功并投入使用。
+
+    \subsubsection{陈芳允,卫星，清华大学、英国A.C.Cossor无线电厂研究室}
+陈芳允（1916.4.3-2000.4.29 ），浙江台州黄岩人，无线电电子学家，中国卫星测量、控制技术的奠基人之一，“两弹一星功勋奖章”获得者，中国科学院院士，中国科学技术大学和国防科技大学教授。
+
+陈芳允长期从事无线电电子学及电子和空间系统工程的科学研究和开发工作。1985年获国家科技进步特等奖，1988年获国防科技进步一等奖。
+
+著有《无线电电子学的新发展》《卫星测控手册》等，发表学术论文30多篇。1986年，他和部分院士联名建议发展中国的高技术，促成了中国发展高技术的“863计划”。
+
+1997年4月7日至10日，陈芳允与杨嘉墀、王大珩、王淦昌三位院士以“863”计划的名义发表了《中国月球探测技术发展的建议》。
+
+    \subsubsection{陈能宽,原子弹、氢弹，交通大学唐山工学院（西南交通大学）、美国耶鲁大学}
+陈能宽(1923.4.28--2016.5.27 ) 著名金属物理学家。湖南省慈利县人，男，中共党员，中国科学院院士。
+
+陈能宽历任第二机械工业部北京第九研究所（中物院前身）实验部主任、副院长、院科技委主任、院高级科学顾问，核工业部科技委副主任，国防科学技术工业委员会科技委副主任等职。曾任第三、四届全国人大代表，第五至八届全国政协委员。 
+
+中国共产党的优秀党员，中国核武器事业的奠基人之一，“两弹一星”功勋奖章获得者，中国科学院院士，原中国工程物理研究院副院长，核工业部科技委副主任陈能宽同志，因病医治无效，于2016年5月27日12时在北京逝世，享年94岁。
+
+居美国期间，他借助奖学金只用了3年时间就在耶鲁大学获得了物理冶金系的硕士和博士学位。正当他学成准备回国时，中国被迫进行抗美援朝战争，使他有国难回。他先受聘于美国巴尔的摩的霍普金斯大学，后又到匹兹堡的西屋电器公司作研究员。在美期间，他经常与进步学生联系，1949年被选为留美科学工作者协会第一届干事、留美科协学术小组联络人和耶鲁区会的负责人，为动员留美人员回国做了大量工作。陈能宽多次受到美国移民局官员的盘问，并对他施加压力。在压力下，陈能宽更积极参加许多留美华人爱国联谊活动。直到1955年秋，中美两国在日内瓦达成“交换平民及留学生”协议，他才真正有了归国的希望。有些美国朋友对他急于回到贫穷落后的中国不解，他说：“新中国是我的祖国，我没有理由不爱她。这种诚挚的爱，就象是被爱神之箭射中了一样，是非爱不可的！”。陈能宽终于在1955年11月25日，带着全家大小乘威尔逊总统号轮船，从旧金山经檀香山、日本、菲律宾、香港，于12月16日抵达深圳，实现了回国愿望。
+
+    \subsubsection{杨嘉墀,卫星，交通大学、美国哈佛大学}
+杨嘉墀（1919.7.16-2006.6.11）江苏吴江人，空间自动控制学家。 航天技术和自动控制专家，仪器仪表与自动化专家，自动检测学的奠基者。中国自动化学科、中国自动化学会和中国仪器仪表学会的创建人之一。
+
+1941年（民国三十年）毕业于上海交通大学，1949年获美国哈佛大学博士学位， 1980年12月加入中国共产党， 同年当选为中国科学院院士（学部委员）。 1949年，杨嘉墀以《傅立叶变换器及其应用》的博士论文，通过答辩，被授予哈佛大学哲学博士学位。
+
+杨嘉墀长期致力于中国自动化技术和航天技术的研究发展。参与制定中国空间技术发展规划。领导和参加包括第一颗卫星在内的多种卫星的总体及自动控制系统的研制，返回式卫星和东方红一号卫星。 30多年来，多次参与中国空间计划方案论证工作。主持人造卫星姿态控制系统的研究与发展。在三轴稳定的返回式卫星和科学探测卫星的发展中作出重大献。
+
+    \subsubsection{周光召,原子弹、氢弹，清华大学、北京大学、苏联杜布纳联合核子研究所}
+周光召，1929年5月15日生于湖南长沙，科学家、世界公认的赝矢量流部分守恒定理的奠基人之一、两弹一星功勋奖章获得者。
+
+1942年，周光召进入重庆南开中学。1947年，便以优异的成绩转入清华大学物理系。1958年在国际上首先提出粒子的螺旋态振幅，并建立了相应的数学方法。
+
+1958年在国际上首先提出粒子的螺旋态振幅，并建立了相应的数学方法。是世界公认的赝矢量流部分守恒定理的奠基人之一。参加领导了爆炸物理、幅射流力学、高温高压物理、计算力学等研究工作。在中国第一颗原子弹和氢弹的理论设计中作出贡献。
+    \subsubsection{钱学森,火箭、导弹、卫星，交通大学、美国麻省理工学院、美国加州理工学院}
+
+    \paragraph{简介}
+钱学森（1911.12.11－2009.10.31），汉族，吴越王钱镠第33世孙，生于上海，祖籍浙江省杭州市临安。世界著名科学家，空气动力学家，中国载人航天奠基人，中国科学院及中国工程院院士，中国两弹一星功勋奖章获得者，被誉为“中国航天之父”“中国导弹之父”“中国自动化控制之父”和“火箭之王”，由于钱学森回国效力，中国导弹、原子弹的发射向前推进了至少20年。
+
+1934年，毕业于国立交通大学机械与动力工程学院，曾任美国麻省理工学院和加州理工学院教授。1955年，在毛泽东主席和周恩来总理的争取下回到中国。1959年加入中国共产党，先后担任了中国科学技术大学近代力学系主任，中国科学院力学研究所所长、第七机械工业部副部长、国防科工委副主任、中国科学技术协会主席、中国科学技术协会名誉主席、中国人民政治协商会议第六、七、八届全国委员会副主席、中国科学院数理化学部委员、中国宇航学会名誉理事长、中国人民解放军总装备部科技委高级顾问等重要职务；他还兼任中国自动化学会第一、二届理事长。1995年，经中宣部批准及钱学森本人同意，母校西安交通大学将图书馆命名为钱学森图书馆，时任中共中央总书记、国家主席、中央军委主席江泽民同志亲笔题写了馆名。2009年10月31日北京时间上午8时6分，钱学森在北京逝世，享年98岁。 2011年12月8日，纪念钱学森诞辰100周年座谈会在人民大会堂举行。
+
+他先后获航空工程硕士学位和航空、数学博士学位。1938年7月至1955年8月，钱学森在美国从事空气动力学、固体力学和火箭、导弹等领域研究，并与导师共同完成高速空气动力学问题研究课题和建立“卡门-钱学森”公式，在二十八岁时就成为世界知名的空气动力学家。
+\paragraph{赴美留学}
+1939年，获美国加州理工学院航空、数学博士学位。1943年，任加州理工学院助理教授。1945年，任加州理工学院副教授。1947年，任麻省理工学院教授。
+
+1947年，在上海与蒋英结婚。1949年，任加州理工学院喷气推进中心主任、教授。1953年，钱学森正式提出物理力学概念，主张从物质的微观规律确定其宏观力学特性，开拓了高温高压的新领域。1954年，《工程控制论》英文版出版，该书俄文版、德文版、中文版分别于1956年、1957年、1958年出版。1958年任中国科学技术大学近代力学系主任。
+
+\paragraph{遭到拘留}
+当中华人民共和国宣告诞生的消息传到美国后，钱学森和夫人蒋英便商量着早日赶回祖国，为自己的国家效力。此时的美国，以麦卡锡为首对共产党人实行全面追查，并在全美国掀起了一股驱使雇员效忠美国政府的狂热。钱学森因被怀疑为共产党人和拒绝揭发朋友，被美国军事部门突然吊销了参加机密研究的证书。钱学森非常气愤，以此作为要求回国的理由。 [5] 
+1950年，钱学森上港口准备回国时，被美国官员拦住，并将其关进监狱，而当时美国海军次长丹尼·金布尔（Dan A. Kimball）声称：钱学森无论走到哪里，都抵得上5 个师的兵力。 [5]  从此，钱学森在受到了美国政府迫害，同时也失去了宝贵的自由，他一个月内瘦了三十斤左右。移民局抄了他的家，在特米那岛上将他拘留14天，直到收到加州理工学院送去的1.5万美金巨额保释金后才释放了他。后来，海关又没收了他的行李，包括800公斤书籍和笔记本。美国检察官再次审查了他的所有材料后，才证明了他是无辜的。
+
+\paragraph{艰难回国}
+钱学森在美国受迫害的消息很快传到中国，中国科技界的朋友通过各种途径声援钱学森。党中央对钱学森在美国的处境极为关心，中国政府公开发表声明，谴责美国政府在违背本人意愿的情况下监禁了钱学森。
+
+1954年，一个偶然的机会，他在报纸上看到陈叔通站在天安门城楼上，身份是全国人大常委会副委员长，他决定给这位父亲的好朋友写信求救。正当周恩来总理为此非常着急的时候，时任全国人大常委会副委员长的陈叔通收到了一封从大洋彼岸辗转寄来的信。他拆开一看，署名“钱学森”，原来是请求祖国政府帮助他回国。 
+
+1954年4月，美英中苏法五国在日内瓦召开讨论和解决朝鲜问题和恢复印度支那和平问题的国际会议。出席会议的中国代表团团长周恩来联想到中国有一批留学生和科学家被扣留在美国，于是就指示说，美国人既然请英国外交官与我们疏通关系，我们就应该抓住这个机会，开辟新的接触渠道。 
+
+中国代表团秘书长王炳南1954年6月5日开始与美国代表、副国务卿约翰逊就两国侨民问题进行初步商谈。美方向中方提交了一份美国在华侨民和被中国拘禁的一些美国军事人员名单，要求中国给他们以回国的机会。为了表示中国的诚意，周恩来指示王炳南在1954年6月15日举行的中美第三次会谈中，大度地作出让步，同时也要求美国停止扣留钱学森等中国留美人员。
+
+然而，中方的正当要求被美方无理拒绝。1954年7月21日，日内瓦会议闭幕。为不使沟通渠道中断，周恩来指示王炳南与美方商定自1954年7月22日起，在日内瓦进行领事级会谈。为了进一步表示中国对中美会谈的诚意，中国释放了4个扣押的美国飞行员。 
+
+中国作出的让步，最终是为了争取钱学森等留美科学家尽快回国，可是在这个关键问题上，美国代表约翰逊还是以中国拿不出钱学森要回国的真实理由，一点不松口。
+
+1955年，经过周恩来总理在与美国外交谈判上的不断努力——甚至包括了不惜释放11名在朝鲜战争中俘获的美军飞行员作为交换，1955年8月4日，钱学森收到了美国移民局允许他回国的通知。1955年9月17日，钱学森回国愿望终于得以实现了，这一天钱学森携带妻子蒋英和一双幼小的儿女，登上了“克利夫兰总统号”轮船，踏上返回祖国的旅途。1955年10月8日，钱学森一家终于回到了自己魂牵梦绕的祖国，回到自己的故乡.
+
+\paragraph{归国之后}
+归国之后，周恩来在各方面都给予了钱学森亲切细致的关怀，晚年的钱学森还激动地回忆起一件往事：1970年，中国第一颗人造卫星“东方红”发射前夕，周恩来总理召集相关的科研人员在人民大会堂开会，临别之际，周恩来总理特意叫住了钱学森：钱学森，你不要太累着了。钱学森生前常对人说，对他一生影响最深和帮助最大的有两个人，一个是开国总理周恩来，一个是自己的岳父蒋百里。
+
+\paragraph{个人生活}
+钱学森的父亲钱均夫早年赴日本求学，1911年回国，曾担任浙江省教育厅厅长。钱均夫与蒋百里是莫逆之交。蒋百里被誉为“现代兵学之父”，当时就任国民政府保定陆军学校校长。蒋百里与其日本夫人生有5个女儿，钱均夫只有独子钱学森，蒋家答应将三女蒋英过继给钱家。
+
+钱学森在20世纪40年代就已经成为航空航天领域内最为杰出的代表人物之一，成为二十世纪众多学科领域的科学群星中极少数的巨星之一；钱学森也是为新中国的成长做出无可估量贡献的老一辈科学家团体之中，影响最大、功勋最为卓著的杰出代表人物，是新中国爱国留学归国人员中最具代表性的国家建设者，是新中国历史上伟大的人民科学家。
+
+    \subsubsection{屠守锷,火箭、导弹，西南联合大学、美国麻省理工学院}
+屠守锷（1917年12月5日-2012年12月15日），浙江省湖州市人。火箭总体设计专家，与任新民、黄纬禄、梁守槃一起尊称为“中国航天四老”。
+
+1940年屠守锷毕业于清华大学航空系。1943年获美国麻省理工学院航空系硕士学位。1991年当选为中国科学院院士、学部委员。
+
+屠守锷同志早年从事飞机结构力学的研究与教学工作，后投身我国导弹与航天事业，长期从事导弹与火箭总体技术理论研究与工程实践工作，对导弹研制过程中重大关键技术问题的解决、大型航天工程方案的决策、指挥及组织实施发挥了重要作用，是中国导弹与航天技术的开拓者之一。
+
+平和、淡然，不只是屠守锷的神态，更是他面对困境的态度。面对外界对自己的各种褒奖，屠老曾淡然说道，“我也不需要认可，也不需要否认”。在“文革”浩劫之中，面对铺天盖地的大字报和一个接一个的批斗会，屠守锷我行我素，埋头于洲际导弹的论证、实验，哪怕是在批斗大会上，他也不忘带着笔和纸，计算洲际导弹的数据。任别人在台上口沫横飞，他笔走游龙，旁若无人地演算公式。很快，他与同事们一起，终于拿出了洲际导弹的初步设计方案。
+    \subsubsection{黄纬禄,导弹，中央大学、伦敦大学帝国学院}
+黄纬禄（1916.12.18-2011.11.23）安徽芜湖市人，中国著名火箭与导弹控制技术专家和航天事业的奠基人之一， 是“两弹一星”功勋奖章获得者，国际宇航科学院院士，中国首枚潜地导弹总设计师，中国第一艘核潜艇副总设计师，中国陆上发射井液体战略导弹副总工程师，水下核潜艇固体潜地战略导弹总设计师，陆上机动车固体战略导弹总设计师和地空导弹武器系统总设计师，知名导弹专家，被誉为“巨浪之父”、“东风-21之父”、“航天老总”。 
+
+黄纬禄于1940年（民国二十九年）毕业于中央大学电机系，1947年获英国伦敦大学帝国学院硕士学位，1960年2月加入中国共产党， 1991年当选为中国科学院院士（学部委员）。 
+
+黄纬禄长期从事导弹武器系统研制工作，他成功的领导中国第一发固体潜地战略导弹的研制。他提出“一弹两用”设想，将潜地导弹搬上岸，研制成功陆基机动固体战略导弹武器系统，这两个型号的研制成功，为中国固体战略导弹研制提供了理论依据，探索出中国固体火箭的研制规律，填补了中国导弹与航天技术的空白。
+    \subsubsection{程开甲,原子弹、氢弹，浙江大学、英国爱丁堡大学}
+程开甲，中国科学院院士，“两弹一星”功勋奖章获得者，2013年国家最高科学技术奖获得者，我国核武器事业的开拓者之一，我国核试验科学技术体系的创建者之一。 1918年8月3日出生，江苏省吴江市盛泽镇人，祖籍徽州。 中国人民解放军总装备部科技委顾问。1941年毕业于浙江大学物理系。1948年获英国爱丁堡大学哲学博士学位。1980年当选为中国科学院学部委员。曾任浙江大学、南京大学教授，第二机械工业部核武器研究所副所长，国防科工委核实验基地研究所副所长、所长及基地副司令员，国防科工委（总装备部）科技委常委、顾问。 
+
+程开甲是中国核武器研究的开创者之一，在核武器的研制和试验中作出突出贡献。开创、规划领导了抗辐射加固技术新领域研究。是中国定向能高功率微波研究新领域的开创者之一。出版了中国第一本固体物理学专著，提出了普遍的热力学内耗理论，导出了狄拉克方程，提出并发展了超导电双带理论和凝聚态TFDC电子理论。1985年获国家科技进步奖特等奖，1999年被国家授予“两弹一星”功勋奖章，2013年获国家最高科学技术奖。
+
+2017年7月28日，中央军委主席习近平签署命令：授予程开甲同志“八一勋章”。 2018年3月27日，程开甲院士获得“世界因你而美丽——2017-2018影响世界华人盛典”终身成就奖”  。
+    \subsubsection{彭桓武,原子弹、氢弹，清华大学、英国爱丁堡大学}
+
+彭桓武（1915年10月6日—2007年2月28日），物理学家。1915年10月6日生于吉林长春，祖籍湖北省麻城县王岗乡（今麻城市铁门岗乡王岗社区） 。1935年毕业于清华大学。1940年获英国爱丁堡大学哲学博士学位。1948年当选为爱尔兰皇家科学院院士。1955年被选聘为中国科学院学部委员（院士）。
+
+彭桓武长期从事理论物理的基础与应用研究，先后在中国开展了关于原子核、钢锭快速加热工艺、反应堆理论和工程设计以及临界安全等多方面研究。对中国原子能科学事业做了许多开创性的工作。对中国第一代原子弹和氢弹的研究和理论设计作出了重要贡献。 1982年获国家自然科学奖一等奖，1985年获国家科技进步奖特等奖，1995年获何梁何利基金科学与技术成就奖。1999年被授予“两弹一星”功勋奖章。
+
+    \subsubsection{王淦昌,原子弹、氢弹，清华大学、德国柏林大学}
+王淦昌（1907.5.28—1998.12.10），男，出生于江苏常熟，核物理学家、中国核科学的奠基人和开拓者之一、中国科学院院士、“两弹一星功勋奖章”获得者。
+
+
+1929年毕业于清华大学物理系。1933年获柏林大学博士学位。1964年，他独立地提出了用激光打靶实现核聚变的设想，是世界激光惯性约束核聚变理论和研究的创始人之一。
+
+王淦昌参与了中国原子弹、氢弹原理突破及核武器研制的试验研究和组织领导，是中国核武器研制的主要奠基人之一。曾荣获两项国家自然科学一等奖、国家科学技术进步特等奖等奖项。
+
+    \subsubsection{邓稼先,原子弹、氢弹，西南联合大学、美国普渡大学}
+邓稼先（1924—1986），九三学社社员，中国科学院院士，著名核物理学家，中国核武器研制工作的开拓者和奠基者，为中国核武器、原子武器的研发做出了重要贡献。
+
+1924年出生于安徽怀宁县一个书香门第的家庭。1935年考入志成中学，在读书求学期间，深受爱国救亡运动的影响。1937年北平沦陷后，他曾秘密参加抗日聚会。后在父亲邓以蛰的安排下，他随大姐去往昆明，并于1941年考入西南联合大学物理系。1948年至1950年，他在美国普渡大学留学，获得物理学博士学位，毕业当年，他就毅然回国。 
+
+邓稼先是中国核武器研制与发展的主要组织者、领导者，邓稼先始终在中国武器制造的第一线，领导了许多学者和技术人员，成功地设计了中国原子弹和氢弹，把中国国防自卫武器引领到了世界先进水平。
+
+1982年获国家自然科学奖一等奖，1985年获两项国家科技进步奖特等奖，1986年获全国劳动模范称号，1987年和1989年各获一项国家科技进步奖特等奖。  1999年被追授“两弹一星功勋奖章”。由于他对中国核科学事业做出了伟大贡献，被称为“两弹元勋”。
+
+邓稼先在一次实验中，受到核辐射，身患直肠癌，于1986年7月29日在北京不幸逝世，终年62岁。
+
+邓稼先不仅注重科技实验，还格外注重对科学理论的及时梳理和总结。邓稼先和周光召合写的《我国第一颗原子弹理论研究总结》，是一部核武器理论设计开创性的基础巨著，它总结了百位科学家的研究成果，这部著作不仅对以后的理论设计起到指导作用，而且还是培养科研人员入门的教科书。邓稼先对高温高压状态方程的研究也做出了重要贡献。为了培养年轻的科研人员，他还写了电动力学、等离子体物理、球面聚心爆轰波理论等许多讲义，即使在担任院长重任以后，他还在工作之余着手编写“量子场论”和“群论”。
+
+\begin{itemize}
+    \item 当众撕碎侵略者的旗子
+    1937年7月7日，卢沟桥事变的枪声响起。22天后，北平沦陷了。日本侵略者召开了“庆功会”。 [38]  时年13岁的邓稼先无法忍受这种屈辱，当众把一面日本国旗撕得粉碎，并扔在地上踩了几脚。这件事发生后，邓以蛰的一个好友劝他说，此事早晚会被人告发，你还是尽早让孩子离开北平吧。无奈之下，邓以蛰让邓稼先的大姐带着他南下昆明，那里有南迁的清华和北大教授，还有众多的老朋友。临走前，父亲对他说“稼儿，以后你一定要学科学，不要学文，科学对国家有用。”邓以蛰凭自己的经验寄希望于邓稼先，但这句话在邓稼先的脑海里却留下了深深的印象。
+    \item 许身国威壮河山
+    1979年，在一次航投试验时出现降落伞事故，原子弹坠地被摔裂。邓稼先深知危险，却一个人抢上前去把摔破的原子弹碎片拿到手里仔细检验。
+
+身为医学教授的妻子知道他“抱”了摔裂的原子弹，在邓稼先回北京时强拉他去检查。结果发现在他的小便中带有放射性物质，肝脏破损，骨髓里也侵入了放射物。随后，邓稼先仍坚持回核试验基地。在步履艰难之时，他坚持要自己去装雷管，并首次以院长的权威向周围的人下命令：“你们还年轻，你们不能去！” [14] 
+
+1985年，邓稼先离开罗布泊回到北京，仍想参加会议。医生强迫他住院并通知他已患有癌症。 [11] 
+他无力地倒在病床上，面对自己妻子以及国防部长张爱萍的安慰，平静地说：“我知道这一天会来的，但没想到它来得这样快。
+    \item 最后一枚奖章
+    邓稼先一生功勋卓著，获奖无数，他生前的最后一枚奖章是在医院的病房里获得的。1986年7月17日下午，时任国务院副总理李鹏、全国总工会书记罗干、国防科工委科技委主任朱光亚、核工业部部长蒋心雄等领导，前往解放军总医院，向邓稼先颁发全国劳动模范证书和奖章，以表彰他为中国核武器研究工作和核事业所作出的特殊贡献。这是“七五”期间党中央、国务院授予的第一个全国劳动模范称号、授出的第一枚全国劳动模范奖章。 [40-41] 
+
+    邓稼先庄重地把奖章戴在胸前，高兴地说：“今天李鹏副总理亲临医院授予我全国劳动模范称号，我感到万分激动。核武器事业是成千上万人的努力才取得成功的，我只不过做了一小部分应该做的工作，但党和国家就给我这样的荣誉，这足以说明党和国家对尖端事业的重视。我现在虽然患病，但我要顽强地同疾病作斗争，争取早日恢复健康，为国防科研事业再尽一些力量，以不辜负党和国家对我的希望。”   
+    \item 庶民本色
+    在“两弹元勋”邓稼先留给后人的照片中，我们看到的是一位学究形象。实际上，邓稼先是一个非常热爱生活的人，在衣食住行上均表现出极强的“庶民本色” [44]  。
+
+邓稼先穿衣服从不挑剔，一般就是一套灰色咔叽布的中山装，衣服样式也基本没什么变化，一套衣服一穿就是很多年，很久也不见他置办新衣服 [44]  。不过邓稼先的着装是十分讲究的，他的衣服虽然不新，但从来都是干净、整齐，从不因为工作繁忙而在服装上显示出“没时间收拾”的样子 [44]  。
+
+邓稼先在“吃”上是相当讲究的 [44]  。在经济条件允许的范围内，他总是在节假日吃上一顿。邓稼先很喜欢请客，每每花上10元钱在饭馆请同事们热热闹闹地吃上一顿。而一个人的时候，他也不忘一饱口福。调回北京后，他一般都要在星期天去岳父许德珩家里团聚一次。而在去岳父家的途中，邓稼先都选择在当时北京的繁华地段西单附近下公交车，找一家有名的饭馆用餐。这样做，既可以不给岳父家里添麻烦，又可以满足自己的爱好。虽然邓稼先身居领导职务多年，但从不开单间、去雅座，而当时散座席上还没有“排队叫号”一说，所以每当进入正值饭点的餐厅，邓稼先就和普通市民一样，看准了一位要吃完的食客，站在其后面等座，有时一等就是半个小时 [44]  。
+
+邓稼先喜欢喝酒，在聚餐或下馆子时，只要不影响工作，一般都会喝上比较好的白酒二两，但从不过量 [44]  。邓稼先的父亲邓以蛰也喜爱饮酒，亲家许德珩去看望邓以蛰的时候，往往会带上一瓶顶级的国产白酒作为礼物送给亲家。邓以蛰在得到许德珩送来的酒后，往往叫儿子邓稼先来陪他喝上一杯，而邓稼先也是只喝二两。在许进的印象中，邓稼先只有一次喝酒“突破”到三两。究其原因，时值邓稼先团队的一位同志的子女由于种种原因而无法参加高考，一时又没有解决之策，让他非常发愁，因此在不知不觉中多喝了好几杯
+
+在从事核工业研究期间，邓稼先根本无暇娱乐 [44]  。调回北京后，邓稼先有了一些业余时间，就喜爱上了听京剧，且不管什么戏都喜欢听。由于工作时间不固定，他从来不预先买票，也不托别人帮着买，而是一有时间就赶到北京护国寺的剧场前，和别人一起等退票。他“经验”丰富，从来不在售票窗口等退票，而是在离剧场稍远的地方寻找“真想退票”的人，结果每次均能买到价格适当的退票，准时进入剧场 [44]  。
+
+邓稼先还有一个爱好是看电影 [44]  。当时，国管局于每星期六晚上在政协礼堂放电影，一般连放两场，邓稼先每场必看。他看电影，从来都是坐公交车前往，有时电影结束得很晚，末班公交车没有了，政协机关的同志想叫个车把他送回家，他都是连说“不用，不用”，迈开脚步向家的方向走去 [44]  。
+\end{itemize}
+    \subsubsection{赵九章,卫星，河南留学欧美预备学校、清华大学、德国柏林大学}
+赵九章（1907.10.15-1968.10.26），浙江吴兴人，出生于河南省开封市， [1]  中国著名大气科学家，地球物理学家和空间物理学家，中国动力气象学的创始人，东方红1号卫星总设计师，中国人造卫星事业的倡导者和奠基人之一、中国现代地球物理科学的开拓者。 
+
+1933年（民国二十二年）毕业于清华大学物理系，1938年（中华民国二十七年）10月获德国柏林大学博士学位，1951年加入九三学社，1955年被选聘为中国科学院院士。 
+
+赵九章对大气科学、地球物理学和空间科学的发展作出了重要贡献，是倡导和开拓中国地球科学数学物理化和新技术化的先驱。在气团分析、信风带热力学、大气长波斜压不稳定、大气准定常活动中心、有关带电粒子和外层空间磁场的物理机制等方面的研究成果是奠基性的。先后创立了不少地球科学研究机构，并开辟了许多新研究领域，如气球探空、臭氧观测、海浪观测、云雾物理观测、探空火箭和人造地球卫星等，并培养了一大批优秀的科学家，对中国地球科学的发展产生了深远的影响。
+    \subsubsection{姚桐斌,导弹、火箭，交通大学唐山工学院（西南交通大学）、英国伯明翰大学}
+姚桐斌（1922年9月3日-1968年6月8日），江苏省无锡市人，冶金学、航天材料专家、火箭材料及工艺技术专家，两弹一星功勋奖章获得者 。
+
+1941年姚桐斌高中毕业后考入交通大学唐山工学院 ；1945年以全校第一的总评成绩毕业，获得工学士学位，同年8月任国民政府经济部矿冶研究所助理研究员；1946年10月被录取为公费留学生；1947年10月进入英国伯明翰大学工业冶金系攻读研究生；1951年获得伯明翰大学工学博士学位；1953年6月获得伦敦帝国学院皇家矿校冶金系文凭；1954年赴联邦德国亚琛工业大学冶金系铸造研究室任研究员；1956年9月在中国驻瑞士使馆加入了中国共产党；1957年4月在联邦德国冶金厂实习，9月回到祖国，转正为中国共产党党员。1958年1月被分配到国防部第五研究院一分院工作，历任一分院第七研究室工程师、室主任、第六研究所所长；1965年改为第七机械工业部后，他仍任材料与工艺研究所所长；1968年6月8日在“文化大革命”中被无端毒打，不幸逝世，年仅46岁 ；1983年被追认为革命烈士。1985年获得国家科学技术进步特等奖；1999年被追授两弹一星功勋奖章。
+
+姚桐斌早年主要进行冶金铸造方面研究；回国后开始从事导弹与航天工业的工艺、材料技术工作
+    \subsubsection{钱骥,卫星，中央大学}
+钱骥（1917.12.27—1983.08.18），男，出生于江苏省金坛县。中共党员，空间技术和空间物理专家，原中国空间技术研究院副院长、科技委副主任。
+
+钱骥早年从事地球物理研究和地震台站网建设工作。20世纪50年代起从事空间探索活动，参与制订星际航行发展规划，组织编写《我国卫星系列发展规划纲要设想》，提出多项有关开展人造卫星研制的新技术预研课题。负责组建卫星总体设计部，是中国第一颗卫星东方红一号方案的总体负责人，并为返回型卫星的研制做了大量技术和组织领导工作。
+
+1999年，钱骥获“两弹一星功勋奖章，是中国空间技术的开拓者之一。
+
+    \subsubsection{钱三强,原子弹、氢弹，北京大学、法国巴黎大学}
+钱三强（1913年10月16日—1992年6月28日），核物理学家。原籍浙江湖州，生于浙江绍兴， 中国原子能科学事业的创始人，中国“两弹一星”元勋，中国科学院院士。
+
+1932年，毕业于北京大学预科。1936年，毕业于清华大学。1939年钱三强完成了博士论文——《α粒子与质子的碰撞》。1946年底，荣获法国科学院亨利·德巴微物理学奖。1948年，任清华大学物理系教授，中国科学院副院长兼浙江大学校长，中国科协副主席、名誉主席，中国物理学会副理事长、理事长。1980年7月24日，钱三强教授在中南海以《科学技术发展的简况》为题讲课。 
+
+1992年6月28日，在北京病逝，终年79岁。
+
+    \subsubsection{郭永怀,原子弹、氢弹、导弹，南开大学、北京大学、加拿大多伦多大学、美国加州理工学院}
+郭永怀（1909年4月4日—1968年12月5日），男，山东荣成人，中共党员。著名力学家、应用数学家、空气动力学家，中国科学院学部委员（即中国科学院院士），近代力学事业的奠基人之一，中国科学技术大学化学物理系首任系主任。 
+
+郭永怀长期从事航空工程研究，发现了上临界马赫数，发展了奇异摄动理论中的变形坐标法，即国际上公认的PLK方法，倡导了中国的高超声速流、电磁流体力学、爆炸力学的研究，培养了优秀力学人才。担负了国防科学研究的业务领导工作，为发展导弹、核弹与卫星事业作出了重要贡献。1999年被授予“两弹一星功勋奖章”，是该群体中唯一一位获得“烈士”称号的科学家。 
+
+2018年7月，国际小行星中心已正式向国际社会发布公告，编号为212796号的小行星被永久命名为“郭永怀星”。
+    
+    
+    \end{document}
